@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ro.helator.api.dynamic.DynamicAPIApplication;
 import ro.helator.api.dynamic.service.DynamicAPIService;
 import ro.helator.api.dynamic.service.def.ServiceModel;
 
@@ -19,7 +20,7 @@ public class DynamicAPIController {
     public String add(@RequestBody ServiceModel serviceModel) throws Exception {
 
         dynamicAPIService.generateAPI(serviceModel);
-
+        DynamicAPIApplication.restart();
         return "ok";
     }
 }
