@@ -17,6 +17,7 @@ public class ${serviceName?cap_first}Controller {
     @PostMapping("/add${method.response?cap_first}")
     public SimpleResponseDTO add${method.response?cap_first}(@RequestBody ${method.response} request){
         try {
+            request.generateKey();
             JsonDBManager.update(request);
         } catch (Exception e) {
             return SimpleResponseDTO.builder()

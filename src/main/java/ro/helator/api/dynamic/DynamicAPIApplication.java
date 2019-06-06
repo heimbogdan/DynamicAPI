@@ -29,6 +29,7 @@ public class DynamicAPIApplication {
 
         Thread thread = new Thread(() -> {
             context.close();
+            replaceSysyemClassLoader();
             loadDynamicClasses();
             context = SpringApplication.run(DynamicAPIApplication.class, args.getSourceArgs());
         });

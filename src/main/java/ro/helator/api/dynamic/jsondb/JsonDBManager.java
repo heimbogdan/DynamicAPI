@@ -8,14 +8,18 @@ public class JsonDBManager {
 	private JsonDBManager(){}
 
 	private static String dbFilesLocation = "DynamicAPI/JsonDB";
-	private static String baseScanPackage = "ro.helator.api.dynamic.dto";
+	private static String baseScanPackage = "ro.helator.api.dynamic";
 	
 	private static JsonDBTemplate jsonDBTemplate;
 	
 	static {
 		jsonDBTemplate = new JsonDBTemplate(dbFilesLocation, baseScanPackage);
 	}
-	
+
+//	public static void reload(){
+//        jsonDBTemplate = new JsonDBTemplate(dbFilesLocation, baseScanPackage);
+//    }
+
 	public static <T> void insert(T entity){
 		checkCollection(entity.getClass());
 		

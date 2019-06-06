@@ -17,10 +17,10 @@ public class ${className}Request {
     @NotEmpty
     private <#if field.isArray = true>List<${field.type}><#else>${field.type}</#if> ${field.name};
 
-    public ${field.type} get${field.name?cap_first}() {
+    public <#if field.isArray = true>List<${field.type}><#else>${field.type}</#if> get${field.name?cap_first}() {
         return this.${field.name};
     }
-    public void set${field.name?cap_first}(${field.type} ${field.name}) {
+    public void set${field.name?cap_first}(<#if field.isArray = true>List<${field.type}><#else>${field.type}</#if> ${field.name}) {
         this.${field.name} = ${field.name};
     }
 

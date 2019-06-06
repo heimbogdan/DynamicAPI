@@ -13,8 +13,15 @@ import javax.validation.constraints.NotNull;
 public class ${className?cap_first} {
 
     @Id
-    @JsonIgnore
     private String key;
+
+    public String getKey(){
+        return this.key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
 <#list fields as field>
     <#if field.isKey>
@@ -23,10 +30,10 @@ public class ${className?cap_first} {
     </#if>
     private <#if field.isArray = true>List<${field.type}><#else>${field.type}</#if> ${field.name};
 
-    public ${field.type} get${field.name?cap_first}() {
+    public <#if field.isArray = true>List<${field.type}><#else>${field.type}</#if> get${field.name?cap_first}() {
         return this.${field.name};
     }
-    public void set${field.name?cap_first}(${field.type} ${field.name}) {
+    public void set${field.name?cap_first}(<#if field.isArray = true>List<${field.type}><#else>${field.type}</#if> ${field.name}) {
         this.${field.name} = ${field.name};
     }
 
@@ -35,7 +42,7 @@ public class ${className?cap_first} {
     public ${className}() {}
 <@compress single_line=true>
     public ${className}(
-    <#list fields as field>${field.type} ${field.name}<#if field?index < fields?size - 1>, </#if>
+    <#list fields as field><#if field.isArray = true>List<${field.type}><#else>${field.type}</#if> ${field.name}<#if field?index < fields?size - 1>, </#if>
     </#list>) {
 </@compress>
 
